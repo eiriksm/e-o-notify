@@ -14,13 +14,13 @@ var config = require('./config');
 if (!config) {
   throw new Exception('No config found. Please configure this module.');
 }
-var transporter = nodemailer.createTransport({
-  service: 'Gmail',
+var transporter = nodemailer.createTransport(smtpTransport({
+  service: 'Mandrill',
   auth: {
-    user: config.gmailuser,
-    pass: config.gmailpass
+    user: config.mandrillUser,
+    pass: config.mandrillPass
   }
-});
+}));
 transporter.use('compile', htmlToText());
 
 function debuglines(data) {
@@ -54,9 +54,6 @@ function EoNotify(type, data, opts) {
       }, function(error, info) {
         if (error) {
           console.log(error);
-        }
-        else {
-          console.log('Message sent: ' + info.response);
         }
       });
     });
