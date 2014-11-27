@@ -3,6 +3,6 @@
   <%= site %> is not responding 200 at the moment. As a matter of fact, it is responding <%= code %>. Now, I am just a machine, but surely that must be a bad sign?
 </p>
 <h3>Debug info</h3>
-<strong>Request + render:</strong> <%= numbers.TOTALTIME %>ms<br>
-<strong>Total resources:</strong> <%= numbers.TOTALRESOURCES %>
+<strong>Request + render:</strong> <%= numbers.TOTALTIME ? numbers.TOTALTIME : '??'%>ms<br>
+<strong>Total resources:</strong> <%= numbers.TOTALRESOURCES ? numbers.TOTALRESOURCES : '??' %>
 <pre><%= debugData %></pre>
