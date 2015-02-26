@@ -21,7 +21,7 @@ transporter = nodemailer.createTransport(sendmailTransport({
 transporter.use('compile', htmlToText());
 
 function debuglines(data) {
-  return util.format('%d [%s], %s', parseInt(data.timestamp, 10), data.type, data.message);
+  return util.format('%d [%s]: %s', parseInt(data.timestamp, 10), data.type, data.message);
 }
 
 function EoNotify(type, data, opts) {
