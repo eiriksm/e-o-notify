@@ -15,24 +15,51 @@ var config = require('./config');
 if (!config) {
   throw new Exception('No config found. Please configure this module.');
 }
-transporter = nodemailer.createTransport(sendmailTransport({
-  path: '/usr/sbin/sendmail'
-}));
+var transporter = nodemailer.createTransport({
+  service: 'Mandrill',
+  auth: {
+    user: config.mandrillUser,
+    pass: config.mandrillPass
+  }
+});
 transporter.use('compile', htmlToText());
 
 function debuglines(data) {
-  return util.format('%d [%s]: %s', parseInt(data.timestamp, 10), data.type, data.message);
+  return util.format("%d [%s]: %s", parseInt(data.timestamp, 10), data.type, data.message);
 }
 
-function EoNotify(type, data, opts) {
+function makeSubject(type, d) {
+  var subject = '';
+  switch (type) {
+    case 'notify-down':
+      subject = util.format('Response code %d from %s', Number(d.code), d.site);
+      break;
+
+    case 'notify-process':
+      subject = util.format('Timeout on %s', d.site);
+      break;
+
+    case 'notify-resource':
+      subject = util.format('Resource error on %s', d.site);
+      break;
+  }
+  if (d.fixed) {
+    subject = 'FIXED: ' + subject;
+  }
+  return subject;
+}
+
+function EoNotify(type, data, opts, callback) {
   emailTemplates(templatesDir, function(err, template) {
     // Assemble some data.
     var d = {
       site: opts.url,
       code: data.statusCode,
-      debugData: data.logs.map(debuglines).join(''),
-      numbers: data.numbers
+      debugData: data.logs.map(debuglines).join("\n"),
+      numbers: data.numbers,
+      fixed: data.fixed
     };
+    d.subject = makeSubject(type, d);
     template(type, d, function(err, h, t) {
       if (err) {
         console.log(err);
@@ -43,26 +70,32 @@ function EoNotify(type, data, opts) {
         attach = true;
       }
       var sendData = {
-        from: 'eirik@e-o.no',
+        from: util.format('%s <%s>', config.fromUser, config.fromMail),
         to: opts.email,
-        subject: util.format('Response code %d from %s', Number(data.statusCode), opts.url),
-        html: h,
+        subject: d.subject,
+        html: h
       };
       if (attach) {
         sendData.attachments = [
           {
             path: data.screenshot.trim()
           }
-        ]
+        ];
       }
-      transporter.sendMail(sendData, function(error, info) {
-        if (error) {
-          console.log(error);
+      var _callback = function(err, res) {
+        if (err) console.error(err);
+        if (callback) {
+          callback(err, res);
         }
-      });
+        else {
+          if (err) {
+            console.error(err);
+          }
+        }
+      };
+      transporter.sendMail(sendData, _callback);
     });
   });
-  return;
 }
 
 EoNotify.prototype.log = function() {
