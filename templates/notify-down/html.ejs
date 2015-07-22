@@ -6,5 +6,6 @@
 <% } %>
 <h3>Debug info</h3>
 <strong>Request + render:</strong> <%= numbers.TOTALTIME ? numbers.TOTALTIME : '??'%>ms<br>
-<strong>Total resources:</strong> <%= numbers.TOTALRESOURCES ? numbers.TOTALRESOURCES : '??' %>
+<strong>Total resources:</strong> <%= numbers.TOTALRESOURCES ? numbers.TOTALRESOURCES : '??' %><br>
+<strong>Total retries:</strong> <%= numbers.retries ? numbers.retries : '??' %>
 <pre><%= debugData %></pre>
