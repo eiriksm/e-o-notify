@@ -1,7 +1,7 @@
 {
   "name": "e-o-notify",
   "version": "1.0.0",
-  "description": "e-o-notify ==========",
+  "description": "e-o-notify",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -19,10 +19,10 @@
   "dependencies": {
     "ejs": "^1.0.0",
     "email-templates": "^1.1.2",
-    "nodemailer": "^1.3.0",
+    "nodemailer": "^1.11.0",
     "nodemailer-html-to-text": "^1.0.0",
     "nodemailer-sendmail-transport": "^1.0.0",
-    "nodemailer-smtp-transport": "^0.1.13"
+    "nodemailer-wellknown": "^0.1.8"
   },
   "devDependencies": {
     "istanbul": "^0.3.2",

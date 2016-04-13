@@ -2,8 +2,7 @@ module.exports = EoNotify;
 
 var Eo = require('../e-o');
 var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
-var sendmailTransport = require('nodemailer-sendmail-transport');
+var wellknown = require('nodemailer-wellknown');
 var htmlToText = require('nodemailer-html-to-text').htmlToText;
 var path = require('path');
 var templatesDir = path.join(__dirname, 'templates');
@@ -16,10 +15,10 @@ if (!config) {
   throw new Exception('No config found. Please configure this module.');
 }
 var transporter = nodemailer.createTransport({
-  service: 'Mandrill',
+  service: 'sparkpost',
   auth: {
-    user: config.mandrillUser,
-    pass: config.mandrillPass
+    user: 'SMTP_Injection',
+    pass: config.sparkpostPass
   }
 });
 transporter.use('compile', htmlToText());
