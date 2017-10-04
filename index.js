@@ -10,7 +10,7 @@ var emailTemplates = require('email-templates');
 var util = require('util');
 var fs = require('fs');
 
-var config = require('./notify-config');
+var config = require.main.require('./notify-config');
 if (!config) {
   throw new Exception('No config found. Please configure this module.');
 }
