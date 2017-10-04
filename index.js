@@ -1,6 +1,6 @@
 module.exports = EoNotify;
 
-var Eo = require('../e-o');
+var Eo = require('e-o');
 var nodemailer = require('nodemailer');
 var wellknown = require('nodemailer-wellknown');
 var htmlToText = require('nodemailer-html-to-text').htmlToText;
@@ -10,7 +10,7 @@ var emailTemplates = require('email-templates');
 var util = require('util');
 var fs = require('fs');
 
-var config = require('./config');
+var config = require('./notify-config');
 if (!config) {
   throw new Exception('No config found. Please configure this module.');
 }

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/eiriksm/e-o-notify",
   "dependencies": {
+    "e-o": "github:eiriksm/e-o",
     "ejs": "^1.0.0",
     "email-templates": "^1.1.2",
     "nodemailer": "^1.11.0",
