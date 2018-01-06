@@ -4,7 +4,7 @@
   "description": "e-o-notify",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "stanard && mocha"
   },
   "repository": {
     "type": "git",
@@ -17,17 +17,16 @@
   },
   "homepage": "https://github.com/eiriksm/e-o-notify",
   "dependencies": {
-    "e-o": "github:eiriksm/e-o",
-    "ejs": "^1.0.0",
-    "email-templates": "^1.1.2",
-    "nodemailer": "^1.11.0",
-    "nodemailer-html-to-text": "^1.0.0",
-    "nodemailer-sendmail-transport": "^1.0.0",
-    "nodemailer-wellknown": "^0.1.8"
+    "ejs": "^2.5.7",
+    "email-templates": "^3.2.0",
+    "nodemailer": "^4.4.1",
+    "nodemailer-html-to-text": "^2.1.0"
   },
   "devDependencies": {
+    "e-o": "github:eiriksm/e-o",
     "istanbul": "^0.3.2",
     "mocha": "^2.0.1",
-    "should": "^4.1.0"
+    "should": "^4.1.0",
+    "standard": "^10.0.3"
   }
 }
