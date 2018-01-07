@@ -24,9 +24,9 @@
   },
   "devDependencies": {
     "e-o": "github:eiriksm/e-o",
-    "istanbul": "^0.3.2",
-    "mocha": "^2.0.1",
-    "should": "^4.1.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.1.0",
+    "should": "^13.2.0",
     "standard": "^10.0.3"
   }
 }
