@@ -48,7 +48,7 @@ function makeSubject (type, d) {
 function notifier (type, data, opts, callback) {
   let email = new Email({
     views: {
-      root: path.join(__dirname, 'templates'),
+      root: templatesDir,
       options: {
         extension: 'ejs'
       }
