@@ -94,7 +94,7 @@ function notifier (type, data, opts, callback) {
     }
     transporter.sendMail(sendData, _callback)
   })
-  .catch(function (e) {
-    callback(e)
-  })
+    .catch(function (e) {
+      callback(e)
+    })
 }
