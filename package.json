@@ -20,7 +20,7 @@
     "ejs": "^2.5.7",
     "email-templates": "^4.0.0",
     "nodemailer": "^4.4.1",
-    "nodemailer-html-to-text": "^2.1.0"
+    "nodemailer-html-to-text": "^3.0.0"
   },
   "devDependencies": {
     "e-o": "github:eiriksm/e-o",
