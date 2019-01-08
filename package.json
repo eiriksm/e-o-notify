@@ -19,7 +19,7 @@
   "dependencies": {
     "ejs": "^2.5.7",
     "email-templates": "^4.0.0",
-    "nodemailer": "^4.4.1",
+    "nodemailer": "^5.0.1",
     "nodemailer-html-to-text": "^2.1.0"
   },
   "devDependencies": {
