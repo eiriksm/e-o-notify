@@ -56,6 +56,7 @@ function notifier (type, data, opts, callback) {
   })
   // Assemble some data.
   var d = {
+    debugUrl: config.debugUrl,
     site: opts.url,
     code: data.statusCode,
     debugData: data.logs.map(debuglines).join('\n'),
