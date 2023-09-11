@@ -12,12 +12,11 @@ if (!config) {
   throw new Error('No config found. Please configure this module.')
 }
 let transporter = nodemailer.createTransport({
-  service: 'sparkpost',
-  auth: {
-    user: 'SMTP_Injection',
-    pass: config.sparkpostPass
-  }
-})
+  host: config.host,
+  port: config.port,
+  secure: config.secure,
+  auth: config.auth,
+});
 transporter.use('compile', htmlToText())
 
 function debuglines (data) {
